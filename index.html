@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amigo Secreto Família Rodrigues</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Inter:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<svg class="lights" id="lights" aria-hidden="true"></svg>
+<canvas id="snow"></canvas>
+<canvas id="confetti"></canvas>
+<div class="hills" aria-hidden="true">
+  <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+    <g fill="#0f3b2b">
+      <polygon points="120,70 150,20 180,70"/><polygon points="110,95 150,40 190,95"/>
+      <polygon points="1260,60 1295,5 1330,60"/><polygon points="1248,90 1295,28 1342,90"/>
+      <polygon points="1340,80 1362,45 1384,80"/><polygon points="1334,100 1362,60 1390,100"/>
+      <polygon points="40,90 60,58 80,90"/><polygon points="34,108 60,72 86,108"/>
+    </g>
+    <path d="M0 95 C 240 55, 420 120, 720 90 S 1200 55, 1440 85 L1440 150 L0 150 Z" fill="#dfe9f2"/>
+    <path d="M0 120 C 300 95, 560 140, 860 115 S 1260 100, 1440 118 L1440 150 L0 150 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<main>
+  <header>
+    <svg class="tree" viewBox="0 0 200 240" aria-hidden="true">
+      <defs>
+        <radialGradient id="glow"><stop offset="0" stop-color="#fff6c2"/><stop offset="1" stop-color="#ffd54a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#2a9a62"/><stop offset="1" stop-color="#16603c"/></linearGradient>
+      </defs>
+      <g class="sway">
+        <polygon points="100,34 148,98 52,98" fill="url(#g1)"/>
+        <polygon points="100,62 164,146 36,146" fill="url(#g1)"/>
+        <polygon points="100,100 182,200 18,200" fill="url(#g1)"/>
+        <path d="M56 94 q44 -8 86 2 M44 140 q56 -12 114 2 M28 194 q72 -14 146 2" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".9"/>
+        <path d="M66 82 Q100 98 132 76 M52 128 Q100 150 150 120 M36 180 Q100 206 166 170" stroke="#e2b55a" stroke-width="2.5" fill="none" stroke-dasharray="1 6" stroke-linecap="round"/>
+        <g>
+          <circle class="orn" cx="82" cy="86" r="5" fill="#ff4d4d" color="#ff4d4d"/>
+          <circle class="orn" cx="118" cy="80" r="5" fill="#ffd54a" color="#ffd54a" style="animation-delay:.4s"/>
+          <circle class="orn" cx="70" cy="132" r="5.5" fill="#5ec8ff" color="#5ec8ff" style="animation-delay:.8s"/>
+          <circle class="orn" cx="104" cy="138" r="5.5" fill="#ff4d4d" color="#ff4d4d" style="animation-delay:.2s"/>
+          <circle class="orn" cx="138" cy="126" r="5.5" fill="#ffd54a" color="#ffd54a" style="animation-delay:1s"/>
+          <circle class="orn" cx="52" cy="182" r="6" fill="#ffd54a" color="#ffd54a" style="animation-delay:.6s"/>
+          <circle class="orn" cx="88" cy="190" r="6" fill="#ff4d4d" color="#ff4d4d" style="animation-delay:1.2s"/>
+          <circle class="orn" cx="124" cy="186" r="6" fill="#5ec8ff" color="#5ec8ff" style="animation-delay:.3s"/>
+          <circle class="orn" cx="156" cy="176" r="6" fill="#ff4d4d" color="#ff4d4d" style="animation-delay:.9s"/>
+        </g>
+      </g>
+      <rect x="88" y="200" width="24" height="24" rx="3" fill="#6b3f22"/>
+      <rect x="40" y="214" width="30" height="22" rx="3" fill="#c0282b"/><rect x="52" y="214" width="6" height="22" fill="#e2b55a"/>
+      <rect x="128" y="218" width="34" height="18" rx="3" fill="#e2b55a"/><rect x="142" y="218" width="6" height="18" fill="#c0282b"/>
+      <circle class="halo" cx="100" cy="24" r="26" fill="url(#glow)"/>
+      <polygon class="topstar" points="100,8 105,19 117,20 108,28 111,40 100,33 89,40 92,28 83,20 95,19" fill="#ffd54a"/>
+    </svg>
+    <div class="kicker">Amigo Secreto</div>
+    <h1 id="titulo">Família Rodrigues</h1>
+    <p id="subtitulo">O sorteio é à distância, a troca de presentes é todo mundo junto.</p>
+    <div class="count" id="count"></div>
+  </header>
+
+  <section id="home">
+    <div class="tabs hidden" id="tabs">
+      <button class="tab" data-tab="part">Sou participante</button>
+      <button class="tab" data-tab="org">Sou o organizador</button>
+    </div>
+
+    <div class="card hidden" id="tab-part">
+      <h2>Descubra seu amigo secreto</h2>
+      <p class="sub">Digite o código de 5 números que você recebeu no WhatsApp.</p>
+      <input id="codigo" class="codein" inputmode="numeric" maxlength="5" placeholder="00000" autocomplete="off" aria-label="Seu código">
+      <button class="btn block" id="btnAbrir">Ver meu amigo secreto</button>
+      <div class="err" id="errPart"></div>
+    </div>
+
+    <div class="card hidden" id="tab-org">
+      <div id="form">
+        <h2>Montar o sorteio</h2>
+        <p class="sub">O site sorteia e cria um código de 5 números para cada pessoa. Nem você, como organizador, fica sabendo quem tirou quem.</p>
+
+        <label for="evento">Nome do amigo secreto</label>
+        <input id="evento" value="Amigo Secreto Família Rodrigues">
+
+        <div class="row">
+          <div>
+            <label for="data">Data da troca <small>(opcional)</small></label>
+            <input id="data" type="date">
+          </div>
+          <div>
+            <label for="local">Local da troca <small>(opcional)</small></label>
+            <input id="local" placeholder="Ex.: Casa da Vó Maria">
+          </div>
+        </div>
+
+        <label for="nomes">Participantes <small>— um nome por linha</small></label>
+        <textarea id="nomes" placeholder="Vó Maria&#10;Tio Carlos&#10;Ana&#10;João&#10;..."></textarea>
+        <div class="sub" id="contagem" style="margin-top:6px;font-size:13px">0 participantes</div>
+
+        <label for="restr">Quem não pode tirar quem <small>(opcional)</small></label>
+        <textarea id="restr" class="short" placeholder="Ana x João&#10;Pedro x Carla x Lucas"></textarea>
+        <div class="note">Use para casais ou quem mora junto: uma linha por grupo, nomes separados por <b>x</b>. Ninguém do mesmo grupo tira o outro.</div>
+
+        <label for="msg">Recado para todos <small>(opcional)</small></label>
+        <input id="msg" placeholder="Ex.: A troca será depois da ceia, às 22h!">
+
+        <button class="btn block" id="btnGerar">Fazer o sorteio</button>
+        <div class="err" id="errOrg"></div>
+      </div>
+
+      <div id="resultado" class="hidden">
+        <h2>Sorteio feito!</h2>
+        <p class="sub">Siga os passos na ordem. O sorteio fica salvo neste navegador, pode fechar e voltar depois.</p>
+
+        <div class="step" id="st1"><span class="num">1</span><div>
+          <b>Baixe o site pronto</b>
+          <p>Esse arquivo já vem com os nomes e o sorteio guardados.</p>
+          <button class="btn sm" id="btnBaixar">Baixar index.html</button>
+        </div></div>
+
+        <div class="step"><span class="num">2</span><div>
+          <b>Coloque no ar o arquivo que você acabou de baixar</b>
+          <p>No repositório do site no GitHub, clique em <b>Add file → Upload files</b>, arraste o index.html baixado (ele substitui o antigo; as pastas css, js e imagens continuam lá) e clique em <b>Commit changes</b>. O GitHub Pages leva 1 ou 2 minutos para atualizar.</p>
+        </div></div>
+
+        <div class="step"><span class="num">3</span><div>
+          <b>Cole o endereço do site</b>
+          <input id="base" placeholder="https://seu-usuario.github.io/amigo-secreto" style="margin-top:8px">
+          <p style="margin-top:10px">Confira abrindo o site: tem que aparecer <b>só a tela de digitar o código</b>. Se ainda aparecer o painel do organizador, espere uns minutos e recarregue. <a href="#" id="btnConferir">Abrir o site</a></p>
+        </div></div>
+
+        <div class="step"><span class="num">4</span><div>
+          <b>Mande o código de cada pessoa</b>
+          <p>A mensagem leva o endereço do site e o código. O botão WhatsApp abre a conversa com tudo pronto.</p>
+          <div class="err" id="errBase" style="display:block"></div>
+        </div></div>
+
+        <div class="list" id="lista"></div>
+
+        <div class="actions">
+          <button class="btn ghost sm" id="btnCopiarTodos">Copiar todos os códigos</button>
+          <button class="btn ghost sm" id="btnRefazer">Fazer novo sorteio</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reveal" class="card reveal hidden"></section>
+  <footer>Feito com carinho para a Família Rodrigues. Cada um só vê o próprio sorteio.</footer>
+</main>
+
+<script>window.CONFIG_SORTEIO = /*CFG*/null/*FIM*/;</script>
+<script src="js/script.js"></script>
+</body>
+</html>
